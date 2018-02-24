@@ -1,0 +1,13 @@
+Please make sure you have following settings enabled on your VLC Player(2.1 and above) running on a PC :
+
+1> Make sure you are connected to local network/wifi.
+2> Goto VLC > Tools > Preferences.
+3> Select "All" radio button under Show settings on bottom left corner.
+4> Now goto "Interface" and click on "Main Interfaces" on left navigation pan.
+5> Select "web" option.
+6> Goto  " Main Interfaces > lua" and set your password as "12345".
+7> click on "Save" and Exit vlc.
+8> Re-launch vlc and a vlc server will start in the background.
+9> A pop-up asking for network permission will appear, select "Public" and click "ok".
+
+You are all set now, just goto main window and click on "Connect to vlc" and voila!!

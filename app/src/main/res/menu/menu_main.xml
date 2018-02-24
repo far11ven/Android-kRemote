@@ -1,0 +1,27 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:icon="@mipmap/vlc_ic_launcher"
+    tools:context="com.kushal.vlcremotecontrol.MainActivity">
+
+    <item android:id="@+id/action_back"
+        android:icon="@drawable/ic_arrow_back"
+        android:title="action_home"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/action_refresh"
+        android:icon="@drawable/ic_menu_refresh"
+        android:title="action_refresh"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/menu_Item1"
+        android:onClick="onOptionsItemSelected"
+        android:title="@string/menuItem1" />
+    <item
+        android:id="@+id/menu_Item2"
+        android:title="@string/menuItem2" />
+    <item
+        android:id="@+id/menu_Item3"
+        android:title="@string/menuItem3" />
+
+</menu>

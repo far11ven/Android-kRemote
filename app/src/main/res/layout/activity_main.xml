@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:icon="@mipmap/vlc_ic_launcher"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.kushal.vlcremotecontrol.MainActivity">
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/vlc_mobileFrame"
+        android:layout_width="match_parent"
+        android:layout_height="430dp">
+
+    <WebView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/vlc_mobileView"
+        android:background="@color/colorGrey"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </WebView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="invisible" />
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/startButton"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/connectToVLCButton"
+        android:textColor="@android:color/background_light"
+        android:foreground="@xml/ripple_effect"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vlc_mobileFrame"
+        app:layout_constraintVertical_bias="0.836" />
+
+    <TextView
+        android:id="@+id/connection_State"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/startButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vlc_mobileFrame" />
+
+</android.support.constraint.ConstraintLayout>

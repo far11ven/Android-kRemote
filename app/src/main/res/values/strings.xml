@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">VLC Remote Control</string>
+    <string name="app_version">v1.1.0</string>
+    <string name="connectToVLCButton">Connect to VLC</string>
+    <string name="messageOnConnectToVLCFailure">No VLC Server found</string>
+    <string name="menuItem1">Pre Requisites</string>
+    <string name="menuItem2">Settings</string>
+    <string name="menuItem3">About</string>
+    <string name="PREF_FILE1">My_Pref_File1</string>
+    <string name="about_text1">Made with ♥ in India.</string>
+
+
+</resources>
