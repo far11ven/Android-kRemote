@@ -1,4 +1,4 @@
-package com.kushal.vlcremotecontrol;
+package com.kushal.kremote;
 
 import android.os.Bundle;
 import android.os.StrictMode;

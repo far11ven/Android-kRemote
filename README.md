@@ -1,2 +1,2 @@
-# android-VLC-Remote-Control
+# Android-kRemote
 VLC Remote Control

@@ -5,7 +5,7 @@
     android:icon="@mipmap/vlc_ic_launcher"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.kushal.vlcremotecontrol.MainActivity">
+    tools:context="com.kushal.kremote.MainActivity">
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/vlc_mobileFrame"
@@ -25,6 +25,8 @@
 
     </WebView>
 
+
+
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
@@ -32,18 +34,47 @@
         android:layout_gravity="center"
         android:visibility="invisible" />
 
+        <RelativeLayout
+            android:id="@+id/rl_progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible">
+
+            <ProgressBar
+                android:id="@+id/pb_progressBar"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="100dp"
+                android:indeterminate="true"
+                android:indeterminateBehavior="cycle"
+                android:paddingBottom="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pb_progressBar"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:text="Searching on local network.." />
+
+        </RelativeLayout>
+
     </FrameLayout>
 
     <Button
         android:id="@+id/startButton"
         android:layout_width="180dp"
         android:layout_height="40dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@color/colorPrimary"
         android:text="@string/connectToVLCButton"
+        android:drawableEnd="@drawable/ic_connect"
         android:textColor="@android:color/background_light"
         android:foreground="@xml/ripple_effect"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -1,4 +1,4 @@
-package com.kushal.vlcremotecontrol;
+package com.kushal.kremote;
 
 import android.content.Intent;
 import android.content.SharedPreferences;

@@ -1,10 +1,12 @@
-package com.kushal.vlcremotecontrol;
+package com.kushal.kremote;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.text.format.Formatter;
+import android.text.method.LinkMovementMethod;
 import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -46,6 +48,12 @@ public class PreRequisites extends AppCompatActivity {
         //"all the steps will come here "
         TextView tView = (TextView) findViewById(R.id.instructions);
         tView.setText(getFileText());
+
+        TextView helpLink =(TextView)findViewById(R.id.instructionsLink);
+        helpLink.setClickable(true);
+        helpLink.setMovementMethod(LinkMovementMethod.getInstance());
+        String text = "<a href='http://www.iamkushal.tumblr.com/android/kremote'> Need more HELP? </a>";
+        helpLink.setText(Html.fromHtml(text));
 
     }
 

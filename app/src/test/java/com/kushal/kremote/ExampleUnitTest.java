@@ -1,4 +1,4 @@
-package com.kushal.vlcremotecontrol;
+package com.kushal.kremote;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.kushal.vlcremotecontrol;
+package com.kushal.kremote;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

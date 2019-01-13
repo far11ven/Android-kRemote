@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/VLCRemoteControl.iml" filepath="$PROJECT_DIR$/VLCRemoteControl.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kRemote.iml" filepath="$PROJECT_DIR$/kRemote.iml" />
     </modules>
   </component>
 </project>

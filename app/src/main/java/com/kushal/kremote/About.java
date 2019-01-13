@@ -1,4 +1,4 @@
-package com.kushal.vlcremotecontrol;
+package com.kushal.kremote;
 
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -27,10 +27,10 @@ public class About extends AppCompatActivity {
         }
 
         //"all the steps will come here "
-        TextView textView =(TextView)findViewById(R.id.aboutHyperLink);
+        TextView textView = findViewById(R.id.aboutHyperLink);
         textView.setClickable(true);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
-        String text = "<a href='http://www.iamkushal.tumblr.com/vlcremote'> iamkushal.tumblr.com/vlcremote </a>";
+        String text = "<a href='http://www.iamkushal.tumblr.com/android/kremote'> iamkushal.tumblr.com/android/kremote </a>";
         textView.setText(Html.fromHtml(text));
 
 

@@ -1,4 +1,4 @@
-package com.kushal.vlcremotecontrol;
+package com.kushal.kremote;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,6 +18,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -31,12 +32,15 @@ import java.util.Enumeration;
 
 import android.util.Base64;
 import android.widget.Toast;
+
 import Utilities.IPAddressValidator;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Button startButton;
-    private ProgressBar progressBar;
+    //private ProgressBar progressBar;
+
+    private RelativeLayout mProgressBar;
     private static TextView connectionState;
 
     private WebView vlcWebView;
@@ -62,8 +66,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             StrictMode.setThreadPolicy(policy);
         }
 
-        progressBar = findViewById(R.id.progressBar);
-        progressBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(this, android.R.color.holo_green_light), android.graphics.PorterDuff.Mode.MULTIPLY);
+        //Display Logo in Action Bar
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.smalllogo);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+
+        mProgressBar = findViewById(R.id.rl_progressBar);
+        //progressBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(this, android.R.color.holo_green_light), android.graphics.PorterDuff.Mode.MULTIPLY);
 
         connectionState =findViewById(R.id.connection_State);
 
@@ -108,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     } else {
                         vlcWebView.loadUrl("about:blank");
-                        String toastMsg = "A valid IP address is not set, you can get that by typing \"IPCONFIG\" on your PC's command prompt.";
+                        String toastMsg = "A valid IP address is not set \n Tip: You can get that by typing \"IPCONFIG\" on your PC's command prompt.";
                         Toast.makeText(getApplicationContext(), toastMsg, Toast.LENGTH_LONG).show();
                         vlcConnectionURL = null;    //setting null, as provided is invalid, hence vlc will try to search
 
@@ -137,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            progressBar.setVisibility(View.VISIBLE);
+            mProgressBar.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -153,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         protected void onPostExecute(String vlcConnectionURL) {
             final String vlcServerURL = vlcConnectionURL;
             // As soon as the loading is complete, hide the loading indicator
-            progressBar.setVisibility(View.INVISIBLE);
+            mProgressBar.setVisibility(View.INVISIBLE);
 
             if (vlcServerURL != null && !vlcServerURL.isEmpty()) {
 
@@ -183,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String toastMsg = getString(R.string.messageOnConnectToVLCFailure);
                 Toast.makeText(getApplicationContext(), toastMsg, Toast.LENGTH_LONG).show();
 
-                connectionState.setText("VLC server not found :( " + "\n" + "Please check your vlc player settings!");
+                connectionState.setText("VLC server was not found :( " + "\n" + "Please check your vlc player settings!");
 
             }
 
@@ -199,12 +208,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (testAServer(urlString, username, password) != 200) {
             vlcServerURL = null;
-            urlString = null;
 
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    connectionState.setText("Searching for local VLC server.. \n To speed things up you can manually provide your VLC IP under \"Settings > VLC IP Address\"");
+                    connectionState.setText("Tip: To speed things up you can manually provide your VLC IP under \"Settings > VLC IP Address\" \n");
                 }
             });
 
@@ -219,6 +227,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     System.out.println(" VLC URL IS : " + vlcServerURL + " & response code is :" + responseCode);
 
                     if (responseCode == 200) {
+                        break;
+                    }
+
+                    if (responseCode == 401) {
+                        vlcServerURL = null;
                         break;
                     }
 
@@ -254,8 +267,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        WebView vlcWebView = (WebView) findViewById(R.id.vlc_mobileView);
-        TextView connectionState = (TextView) findViewById(R.id.connection_State);
+        WebView vlcWebView = findViewById(R.id.vlc_mobileView);
+        TextView connectionState =  findViewById(R.id.connection_State);
 
         switch (item.getItemId()) {
             case R.id.action_back:

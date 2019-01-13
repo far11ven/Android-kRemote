@@ -5,7 +5,7 @@
     android:id="@+id/AboutActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.kushal.vlcremotecontrol.About">
+    tools:context="com.kushal.kremote.About">
 
     <ScrollView
         android:layout_width="match_parent"

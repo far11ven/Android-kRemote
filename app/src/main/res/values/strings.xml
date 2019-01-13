@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">VLC Remote Control</string>
-    <string name="app_version">v1.1.0</string>
-    <string name="connectToVLCButton">Connect to VLC</string>
+    <string name="app_name">kRemote</string>
+    <string name="app_version">v1.0.0</string>
+    <string name="connectToVLCButton"> Connect to VLC </string>
     <string name="messageOnConnectToVLCFailure">No VLC Server found</string>
     <string name="menuItem1">Pre Requisites</string>
     <string name="menuItem2">Settings</string>
