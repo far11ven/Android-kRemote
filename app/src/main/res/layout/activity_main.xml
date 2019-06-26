@@ -10,29 +10,29 @@
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/vlc_mobileFrame"
         android:layout_width="match_parent"
-        android:layout_height="430dp">
-
-    <WebView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/vlc_mobileView"
-        android:background="@color/colorGrey"
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipChildren="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    </WebView>
+        <WebView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/vlc_mobileView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorGrey"
+            android:clipChildren="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </WebView>
 
 
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:visibility="invisible" />
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="invisible" />
 
         <RelativeLayout
             android:id="@+id/rl_progressBar"
@@ -45,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="100dp"
+                android:layout_centerVertical="true"
                 android:indeterminate="true"
                 android:indeterminateBehavior="cycle"
                 android:paddingBottom="10dp" />
@@ -68,7 +68,7 @@
         android:layout_height="40dp"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="160dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"

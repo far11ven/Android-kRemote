@@ -33,7 +33,7 @@ import java.util.Enumeration;
 import android.util.Base64;
 import android.widget.Toast;
 
-import Utilities.IPAddressValidator;
+import utils.IPAddressValidator;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         vlcWebView = findViewById(R.id.vlc_mobileView);
         vlcWebView.setWebContentsDebuggingEnabled(false); // this command prevents debugging in WebView
+        vlcWebView.loadDataWithBaseURL(null, getDefaultVLCPage(), "text/html", "UTF-8", null);  //load default grey VLC page on startup
 
         searchForVLCConnection( sharedPref.getBoolean(Settings.KEY_PREF_AUTOSEARCH_CHKBOX, false));
 
@@ -92,6 +93,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.startButton:
                 searchForVLCConnection(true);
+
+                //vlcWebView.loadUrl("http://:12345@" + "192.168.0.104 " + ":8080/mobile.html");  //replace IP
                 break;
         }
 
@@ -111,12 +114,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (vlcConnectionURL != null && !vlcConnectionURL.isEmpty()) {
 
                     if (ipValidator.validate(vlcConnectionURL) == true) {
-                        vlcWebView.loadUrl("about:blank");
+                        //vlcWebView.loadUrl("about:blank");
+                        vlcWebView.loadDataWithBaseURL(null, getDefaultVLCPage(), "text/html", "UTF-8", null);
                         connectionState.setText("Trying to connect to VLC running on : " + vlcConnectionURL);
                         new FindVLCServerTask().execute(vlcConnectionURL);
 
                     } else {
-                        vlcWebView.loadUrl("about:blank");
+                        //vlcWebView.loadUrl("about:blank");
+                        vlcWebView.loadDataWithBaseURL(null, getDefaultVLCPage(), "text/html", "UTF-8", null);
                         String toastMsg = "A valid IP address is not set \n Tip: You can get that by typing \"IPCONFIG\" on your PC's command prompt.";
                         Toast.makeText(getApplicationContext(), toastMsg, Toast.LENGTH_LONG).show();
                         vlcConnectionURL = null;    //setting null, as provided is invalid, hence vlc will try to search
@@ -126,7 +131,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 } else {
 
-                    vlcWebView.loadUrl("about:blank");
+                    //vlcWebView.loadUrl("about:blank");
+                    vlcWebView.loadDataWithBaseURL(null, getDefaultVLCPage(), "text/html", "UTF-8", null);
                     String toastMsg = "No existing VLC IP found, Searching for local VLC server..";
                     Toast.makeText(getApplicationContext(), toastMsg, Toast.LENGTH_LONG).show();
                     new FindVLCServerTask().execute(vlcConnectionURL);
@@ -134,7 +140,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
 
             } else {
-                vlcWebView.loadUrl("about:blank");
+                //vlcWebView.loadUrl("about:blank");
+                vlcWebView.loadDataWithBaseURL(null, getDefaultVLCPage(), "text/html", "UTF-8", null);
                 connectionState.setText("Please first set your VLC password under " + "\n" + "\"Settings > VLC Password\"");
             }
         }
@@ -182,13 +189,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 vlcWebView.loadUrl("http://:" + authToken + "@" + vlcServerURL + "/mobile.html");
 
                 CURRENT_VLC_SERVER_IP = vlcServerURL;
-                connectionState.setText("VLC is running on : " + vlcServerURL);
+                connectionState.setText("VLC Player is running on : " + vlcServerURL);
                 Toast.makeText(getApplicationContext(), "Connected", Toast.LENGTH_SHORT).show();
 
 
             } else {
 
-                vlcWebView.loadUrl("about:blank");
+                //vlcWebView.loadUrl("about:blank");
+                vlcWebView.loadDataWithBaseURL(null, getDefaultVLCPage(), "text/html", "UTF-8", null);
                 String toastMsg = getString(R.string.messageOnConnectToVLCFailure);
                 Toast.makeText(getApplicationContext(), toastMsg, Toast.LENGTH_LONG).show();
 
@@ -351,6 +359,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         return null;
 
+    }
+
+    public String getDefaultVLCPage() {
+
+        final String defaultHTMLPage = "<!DOCTYPE html>" +
+                "<html lang=\"en-US\">" +
+                "<head><meta name=\"viewport\" content=\"width=device-width, user-scalable=yes\" /></head>" +
+                "<body style=\"font: 11pt Helvetica, Arial, sans-serif; background-color: #EEE; margin: 0px;\">" +
+                "<div id=\"art\" style=\"top: 0px; width: 150px; height: 150px; box-sizing: border-box; margin: 10px auto;\">" +
+                "<img id=\"albumArt\" src=\"file:///android_asset/vlc_trans_48.png\" width=\"128\" height=\"128\" style=\" -webkit-filter: grayscale(100%); filter: grayscale(100%); display: inline; margin-left: 11px; margin-top: 33px;\">" +
+                "</div>" +
+                "</body></html>";
+
+        return defaultHTMLPage;
     }
 
 }
