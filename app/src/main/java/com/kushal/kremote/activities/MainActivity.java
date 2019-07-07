@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     static private String authToken;
     private static final String PORT_NUMBER = "8080";
     private static String CURRENT_VLC_SERVER_IP;
+    private AsyncTask searchVLCTask = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +92,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch (v.getId()) {
             case R.id.startButton:
+                if(searchVLCTask != null){
+                    searchVLCTask.cancel(true);
+
+                    System.out.println(" =====================================  Task has been closed");
+
+                }
                 searchForVLCConnection(true);
 
                 //vlcWebView.loadUrl("http://:12345@" + "192.168.0.104 " + ":8080/mobile.html");  //replace IP
@@ -116,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         //vlcWebView.loadUrl("about:blank");
                         vlcWebView.loadDataWithBaseURL(null, getDefaultVLCPage(), "text/html", "UTF-8", null);
                         connectionState.setText("Trying to connect to VLC running on : " + vlcConnectionURL);
-                        new FindVLCServerTask().execute(vlcConnectionURL);
+                        searchVLCTask = new FindVLCServerTask().execute(vlcConnectionURL);
 
                     } else {
                         //vlcWebView.loadUrl("about:blank");
@@ -125,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Toast.makeText(getApplicationContext(), toastMsg, Toast.LENGTH_LONG).show();
                         vlcConnectionURL = null;    //setting null, as provided is invalid, hence vlc will try to search
 
-                        new FindVLCServerTask().execute(vlcConnectionURL);
+                        searchVLCTask = new FindVLCServerTask().execute(vlcConnectionURL);
                     }
 
                 } else {
@@ -134,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     vlcWebView.loadDataWithBaseURL(null, getDefaultVLCPage(), "text/html", "UTF-8", null);
                     String toastMsg = "No existing VLC IP found, Searching for local VLC server..";
                     Toast.makeText(getApplicationContext(), toastMsg, Toast.LENGTH_LONG).show();
-                    new FindVLCServerTask().execute(vlcConnectionURL);
+                    searchVLCTask = new FindVLCServerTask().execute(vlcConnectionURL);
 
                 }
 
@@ -159,9 +166,74 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         protected String doInBackground(String... params) {
             String[] connectionParams = params;
             final String urlParam = connectionParams[0];
-            vlcConnectionURL = getVlcServerConnection(urlParam, "", authToken);
+            String username ="";
+            String password = authToken;
 
-            return vlcConnectionURL;
+            String vlcServerURL = urlParam + ":" + PORT_NUMBER;
+            String urlString = "http://" + vlcServerURL;
+            int connectionCounter = 0;
+            int responseCode = 0;
+
+            if (testAServer(urlString, username, password) != 200) {
+                vlcServerURL = null;
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        connectionState.setText("Tip: To speed things up you can manually provide your VLC IP under \"Settings > VLC IP Address\" \n");
+                    }
+                });
+
+
+                for (int i = 0; i <= 255; i++) {
+
+                    do {
+                        vlcServerURL = "192.168." + i + "." + connectionCounter + ":" + PORT_NUMBER;
+                        urlString = "http://" + vlcServerURL;
+                        responseCode = testAServer(urlString, username, password);
+
+                        System.out.println(" VLC URL IS : " + vlcServerURL + " & response code is :" + responseCode);
+
+                        if (responseCode == 200) {
+                            break;
+                        }
+
+                        if (responseCode == 401) {
+                            vlcServerURL = null;
+                            break;
+                        }
+
+                        if (connectionCounter == 255 && responseCode != 200) {
+
+                            vlcServerURL = null;
+                        }
+
+                        if (isCancelled())
+                            break;
+
+
+
+                        //increment counter
+                        connectionCounter++;
+
+                    } while (connectionCounter <= 255 || responseCode == 200);
+
+                    connectionCounter = 0;
+
+                    //when found a server
+                    if (i <= 255 && vlcServerURL != null) {
+
+                        break;
+                    }
+                }
+            }
+
+            return vlcServerURL;
+        }
+
+        @Override
+        protected void onCancelled(){
+
         }
 
         @Override
@@ -207,63 +279,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private String getVlcServerConnection(String receivedURL, String username, String password) {
-        String vlcServerURL = receivedURL + ":" + PORT_NUMBER;
-        String urlString = "http://" + vlcServerURL;
-        int connectionCounter = 0;
-        int responseCode = 0;
 
-        if (testAServer(urlString, username, password) != 200) {
-            vlcServerURL = null;
-
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    connectionState.setText("Tip: To speed things up you can manually provide your VLC IP under \"Settings > VLC IP Address\" \n");
-                }
-            });
-
-
-            for (int i = 0; i <= 255; i++) {
-
-                do {
-                    vlcServerURL = "192.168." + i + "." + connectionCounter + ":" + PORT_NUMBER;
-                    urlString = "http://" + vlcServerURL;
-                    responseCode = testAServer(urlString, username, password);
-
-                    System.out.println(" VLC URL IS : " + vlcServerURL + " & response code is :" + responseCode);
-
-                    if (responseCode == 200) {
-                        break;
-                    }
-
-                    if (responseCode == 401) {
-                        vlcServerURL = null;
-                        break;
-                    }
-
-                    if (connectionCounter == 255 && responseCode != 200) {
-
-                        vlcServerURL = null;
-                    }
-
-                    //increment counter
-                    connectionCounter++;
-
-                } while (connectionCounter <= 255 || responseCode == 200);
-
-                connectionCounter = 0;
-
-                //when found a server
-                if (i <= 255 && vlcServerURL != null) {
-
-                    break;
-                }
-            }
-        }
-
-        return vlcServerURL;
-    }
 
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -367,7 +383,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 "<head><meta name=\"viewport\" content=\"width=device-width, user-scalable=yes\" /></head>" +
                 "<body style=\"font: 11pt Helvetica, Arial, sans-serif; background-color: #EEE; margin: 0px;\">" +
                 "<div id=\"art\" style=\"top: 0px; width: 150px; height: 150px; box-sizing: border-box; margin: 10px auto;\">" +
-                "<img id=\"albumArt\" src=\"file:///android_asset/vlc_trans_48.png\" width=\"128\" height=\"128\" style=\" -webkit-filter: grayscale(100%); filter: grayscale(100%); display: inline; margin-left: 11px; margin-top: 24px;\">" +
+                "<img id=\"albumArt\" src=\"file:///android_asset/vlc_trans_48.png\" width=\"128\" height=\"128\" style=\" -webkit-filter: grayscale(100%); filter: grayscale(100%); display: inline; margin-left: 11px; margin-top: 10px;\">" +
                 "</div>" +
                 "</body></html>";
 
