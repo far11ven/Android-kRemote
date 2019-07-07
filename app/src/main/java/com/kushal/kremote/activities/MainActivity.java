@@ -1,10 +1,9 @@
-package com.kushal.kremote;
+package com.kushal.kremote.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.StrictMode;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.preference.PreferenceManager;
@@ -17,7 +16,6 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -33,7 +31,8 @@ import java.util.Enumeration;
 import android.util.Base64;
 import android.widget.Toast;
 
-import utils.IPAddressValidator;
+import com.kushal.kremote.R;
+import com.kushal.kremote.utils.IPAddressValidator;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -308,7 +307,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return true;
 
             case R.id.menu_Item3:
-                Intent intent_About = new Intent(this, About.class);
+                Intent intent_About = new Intent(this, AboutActivity.class);
                 startActivity(intent_About);
                 return true;
 
@@ -368,7 +367,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 "<head><meta name=\"viewport\" content=\"width=device-width, user-scalable=yes\" /></head>" +
                 "<body style=\"font: 11pt Helvetica, Arial, sans-serif; background-color: #EEE; margin: 0px;\">" +
                 "<div id=\"art\" style=\"top: 0px; width: 150px; height: 150px; box-sizing: border-box; margin: 10px auto;\">" +
-                "<img id=\"albumArt\" src=\"file:///android_asset/vlc_trans_48.png\" width=\"128\" height=\"128\" style=\" -webkit-filter: grayscale(100%); filter: grayscale(100%); display: inline; margin-left: 11px; margin-top: 33px;\">" +
+                "<img id=\"albumArt\" src=\"file:///android_asset/vlc_trans_48.png\" width=\"128\" height=\"128\" style=\" -webkit-filter: grayscale(100%); filter: grayscale(100%); display: inline; margin-left: 11px; margin-top: 24px;\">" +
                 "</div>" +
                 "</body></html>";
 

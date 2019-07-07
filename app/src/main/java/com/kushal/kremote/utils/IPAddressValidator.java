@@ -1,4 +1,4 @@
-package utils;
+package com.kushal.kremote.utils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

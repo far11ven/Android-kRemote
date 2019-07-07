@@ -1,36 +1,18 @@
-package com.kushal.kremote;
+package com.kushal.kremote.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
-import android.text.format.Formatter;
 import android.text.method.LinkMovementMethod;
-import android.util.Base64;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.kushal.kremote.R;
+
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.InetAddress;
-import java.net.MalformedURLException;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.net.URL;
-import java.util.Enumeration;
 
 
 public class PreRequisites extends AppCompatActivity {
@@ -38,7 +20,7 @@ public class PreRequisites extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.prerequisites);
+        setContentView(R.layout.activity_prerequisites);
 
         if (android.os.Build.VERSION.SDK_INT > 9)
         {

@@ -1,11 +1,9 @@
-package com.kushal.kremote;
+package com.kushal.kremote.activities;
 
 import android.os.Bundle;
 import android.support.v7.preference.PreferenceFragmentCompat;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+
+import com.kushal.kremote.R;
 
 public  class SettingsFragment extends PreferenceFragmentCompat  {
 

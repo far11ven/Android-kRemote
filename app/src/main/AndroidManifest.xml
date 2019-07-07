@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".SplashActivity" android:theme="@style/SplashTheme">
+        <activity android:name="com.kushal.kremote.activities.SplashActivity" android:theme="@style/SplashTheme">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
@@ -21,7 +21,7 @@
         </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.kushal.kremote.activities.MainActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTop">
             <intent-filter>
@@ -31,30 +31,30 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PreRequisites"
+            android:name="com.kushal.kremote.activities.PreRequisites"
             android:label="Pre Requisites"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="com.kushal.kremote.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.ASSIST" />
                 <category android:name="android.intent.category.INFO" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".Settings"
+            android:name="com.kushal.kremote.activities.Settings"
             android:label="Settings"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="com.kushal.kremote.activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"/>
+                android:value="com.kushal.kremote.activities.MainActivity"/>
             <intent-filter>
                 <action android:name="android.intent.action.ASSIST" />
                 <category android:name="android.intent.category.INFO" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".About"
+            android:name="com.kushal.kremote.activities.AboutActivity"
             android:label="About"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="com.kushal.kremote.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.ASSIST" />
                 <category android:name="android.intent.category.INFO" />

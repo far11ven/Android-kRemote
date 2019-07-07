@@ -38,6 +38,8 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.TextView;
 
+import com.kushal.activities.MainActivity;
+
 import org.junit.Before;
 import static android.support.test.espresso.Espresso.openContextualActionModeOverflowMenu;
 import static android.support.test.espresso.matcher.ViewMatchers.*;
