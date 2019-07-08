@@ -25,8 +25,6 @@ public class AboutActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
-
-
         siteLinkTextView = findViewById(R.id.tv_website);
         siteLinkTextView.setClickable(true);
         siteLinkTextView.setMovementMethod(LinkMovementMethod.getInstance());

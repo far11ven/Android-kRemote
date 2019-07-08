@@ -31,8 +31,16 @@ import java.util.Enumeration;
 import android.util.Base64;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 import com.kushal.kremote.R;
 import com.kushal.kremote.utils.IPAddressValidator;
+
+import static com.google.android.gms.ads.AdSize.*;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -60,12 +68,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // to get settings from Shared Preferences
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 
-
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
-
         //Display Logo in Action Bar
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.drawable.smalllogo);
@@ -74,13 +76,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mProgressBar = findViewById(R.id.rl_progressBar);
         //progressBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(this, android.R.color.holo_green_light), android.graphics.PorterDuff.Mode.MULTIPLY);
 
-        connectionState =findViewById(R.id.connection_State);
+        connectionState = findViewById(R.id.connection_State);
 
         vlcWebView = findViewById(R.id.vlc_mobileView);
         vlcWebView.setWebContentsDebuggingEnabled(false); // this command prevents debugging in WebView
         vlcWebView.loadDataWithBaseURL(null, getDefaultVLCPage(), "text/html", "UTF-8", null);  //load default grey VLC page on startup
 
-        searchForVLCConnection( sharedPref.getBoolean(Settings.KEY_PREF_AUTOSEARCH_CHKBOX, false));
+        searchForVLCConnection(sharedPref.getBoolean(Settings.KEY_PREF_AUTOSEARCH_CHKBOX, false));
 
         startButton = findViewById(R.id.startButton);
         startButton.setOnClickListener(this);
@@ -92,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch (v.getId()) {
             case R.id.startButton:
-                if(searchVLCTask != null){
+                if (searchVLCTask != null) {
                     searchVLCTask.cancel(true);
 
                     System.out.println(" =====================================  Task has been closed");
@@ -107,9 +109,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    public void searchForVLCConnection(boolean searchFlag){
+    public void searchForVLCConnection(boolean searchFlag) {
 
-        if(searchFlag == true) {
+        if (searchFlag == true) {
             vlcConnectionURL = sharedPref.getString(Settings.KEY_PREF_IP_EDITTEXT, "");
             authToken = sharedPref.getString(Settings.KEY_PREF_AUTH_EDITTEXT, "");
 
@@ -166,7 +168,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         protected String doInBackground(String... params) {
             String[] connectionParams = params;
             final String urlParam = connectionParams[0];
-            String username ="";
+            String username = "";
             String password = authToken;
 
             String vlcServerURL = urlParam + ":" + PORT_NUMBER;
@@ -212,7 +214,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             break;
 
 
-
                         //increment counter
                         connectionCounter++;
 
@@ -232,7 +233,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         @Override
-        protected void onCancelled(){
+        protected void onCancelled() {
 
         }
 
@@ -280,8 +281,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-
-
     public boolean onCreateOptionsMenu(Menu menu) {
 
         MenuInflater inflater = getMenuInflater();
@@ -291,7 +290,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public boolean onOptionsItemSelected(MenuItem item) {
         WebView vlcWebView = findViewById(R.id.vlc_mobileView);
-        TextView connectionState =  findViewById(R.id.connection_State);
+        TextView connectionState = findViewById(R.id.connection_State);
 
         switch (item.getItemId()) {
             case R.id.action_back:
@@ -303,6 +302,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     super.onBackPressed();
                     finish();
                 }
+                return true;
+
+            case R.id.action_ad:
+
+                // Initialize the Mobile Ads SDK
+                MobileAds.initialize(this, getString(R.string.admob_app_id_test));   //replace with test account
+
+                AdRequest adRequest = new AdRequest.Builder().addTestDevice("A70433FFEDBDE75343616C4719DBCC94").build();
+
+                // Prepare the Interstitial Ad Activity
+                final InterstitialAd mInterstitialAd = new InterstitialAd(this);
+
+                // Insert the Ad Unit ID
+                mInterstitialAd.setAdUnitId(getString(R.string.admob_interstitial_id_test));
+
+                // Interstitial Ad load Request
+                mInterstitialAd.loadAd(adRequest);
+
+                // Prepare an Interstitial Ad Listener
+                mInterstitialAd.setAdListener(new AdListener() {
+                    public void onAdLoaded() {
+                        // Call displayInterstitial() function when the Ad loads
+                        if (mInterstitialAd.isLoaded()) {
+                            mInterstitialAd.show();
+                        }
+                    }
+                });
+
                 return true;
 
             case R.id.action_refresh:

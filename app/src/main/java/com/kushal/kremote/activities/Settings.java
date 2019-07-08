@@ -19,14 +19,3 @@ public class Settings extends AppCompatActivity {
 }
 
 
- /*@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-     public class Settings extends PreferenceFragment {
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-
-            super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.pref_settings);
-
-        }
-
-}*/

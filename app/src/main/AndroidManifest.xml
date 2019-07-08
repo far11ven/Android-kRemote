@@ -13,6 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/admob_app_id_test"/>
+
         <activity android:name="com.kushal.kremote.activities.SplashActivity" android:theme="@style/SplashTheme">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
@@ -60,6 +64,7 @@
                 <category android:name="android.intent.category.INFO" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

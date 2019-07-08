@@ -10,5 +10,18 @@
     <string name="about_share_text">Made with ♥ in India.</string>
     <string name="rate_app"> kRemote? Rate us on playstore </string>
 
+    <string name="admob_app_id">
+        ca-app-pub-1533259080190708~1717016636</string>
+
+    <string name="admob_interstitial_id">
+        ca-app-pub-1533259080190708/7510245276</string>
+
+    <string name="admob_app_id_test">
+        ca-app-pub-3940256099942544~3347511713</string>
+
+    <string name="admob_interstitial_id_test">
+        ca-app-pub-3940256099942544/1033173712</string>
+
+
 
 </resources>
