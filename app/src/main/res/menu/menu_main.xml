@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:icon="@mipmap/vlc_ic_launcher"
+    android:icon="@mipmap/ic_launcher"
     tools:context="com.kushal.vlcremotecontrol.MainActivity">
 
     <item android:id="@+id/action_back"

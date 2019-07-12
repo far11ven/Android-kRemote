@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/PreRequistesActivity"
-    android:icon="@mipmap/vlc_ic_launcher"
+    android:icon="@mipmap/ic_launcher"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.kushal.kremote.activities.PreRequisites">
