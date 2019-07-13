@@ -10,7 +10,7 @@
         app:showAsAction="always" />
 
     <item android:id="@+id/action_ad"
-        android:icon="@drawable/ic_ad_white_24dp"
+        android:icon="@drawable/ic_ad_black_24dp"
         android:title="action_ad"
         app:showAsAction="always" />
 
