@@ -28,7 +28,7 @@ public class AboutActivity extends AppCompatActivity implements View.OnClickList
         siteLinkTextView = findViewById(R.id.tv_website);
         siteLinkTextView.setClickable(true);
         siteLinkTextView.setMovementMethod(LinkMovementMethod.getInstance());
-        String myWebURL = "https://iamkushal.tumblr.com/android/kremote";
+        String myWebURL = "<a href='http://www.iamkushal.tumblr.com/android/kremote'> iamkushal.tumblr.com/android/kremote </a>";
         siteLinkTextView.setText(myWebURL);
 
         siteLinkTextView.setOnClickListener(this);
@@ -87,16 +87,6 @@ public class AboutActivity extends AppCompatActivity implements View.OnClickList
             case R.id.cv_store:
 
                 openAppInPlayStore();
-                break;
-
-
-            case R.id.tv_website:
-
-                intent = new Intent();
-                intent.setAction(Intent.ACTION_VIEW);
-                intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.kushal.kremote"));
-                startActivity(intent);
                 break;
 
         }

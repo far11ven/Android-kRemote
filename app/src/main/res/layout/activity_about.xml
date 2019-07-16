@@ -182,6 +182,18 @@
                     android:textSize="18sp" />
             </android.support.v7.widget.CardView>
 
+            <TextView
+                android:id="@+id/tv_make"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cv_store"
+                android:layout_margin="8dp"
+                android:gravity="start"
+                android:padding="10dp"
+                android:text="@string/about_make"
+                android:textColor="@color/colorGrey"
+                android:textSize="20sp" />
+
 
         </LinearLayout>
 
