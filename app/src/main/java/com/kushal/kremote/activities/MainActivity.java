@@ -406,7 +406,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 "<head><meta name=\"viewport\" content=\"width=device-width, user-scalable=yes\" /></head>" +
                 "<body style=\"font: 11pt Helvetica, Arial, sans-serif; background-color: #EEE; margin: 0px;\">" +
                 "<div id=\"art\" style=\"top: 0px; width: 150px; height: 150px; box-sizing: border-box; margin: 10px auto;\">" +
-                "<img id=\"albumArt\" src=\"file:///android_asset/vlc_web_48.png\" width=\"128\" height=\"128\" style=\" -webkit-filter: grayscale(100%); filter: grayscale(100%); display: inline; margin-left: 11px; margin-top: 6px;\">" +
+                "<img id=\"albumArt\" src=\"file:///android_asset/vlc_web_48.png\" width=\"128\" height=\"128\" style=\" -webkit-filter: grayscale(100%); filter: grayscale(100%); display: inline; margin-left: 11px; margin-top: 4px;\">" +
                 "</div>" +
                 "</body></html>";
 

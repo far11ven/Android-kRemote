@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.Gravity;
 import android.view.View;
@@ -29,7 +30,7 @@ public class AboutActivity extends AppCompatActivity implements View.OnClickList
         siteLinkTextView.setClickable(true);
         siteLinkTextView.setMovementMethod(LinkMovementMethod.getInstance());
         String myWebURL = "<a href='http://www.iamkushal.tumblr.com/android/kremote'> iamkushal.tumblr.com/android/kremote </a>";
-        siteLinkTextView.setText(myWebURL);
+        siteLinkTextView.setText(Html.fromHtml(myWebURL));
 
         siteLinkTextView.setOnClickListener(this);
 
