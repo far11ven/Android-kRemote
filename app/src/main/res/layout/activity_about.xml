@@ -192,7 +192,7 @@
                 android:padding="10dp"
                 android:text="@string/about_make"
                 android:textColor="@color/colorGrey"
-                android:textSize="10sp" />
+                android:textSize="12sp" />
 
         </LinearLayout>
 

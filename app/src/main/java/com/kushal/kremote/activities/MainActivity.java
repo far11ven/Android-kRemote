@@ -242,6 +242,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (vlcServerURL != null && !vlcServerURL.isEmpty()) {
 
                 vlcWebView.setWebViewClient(new WebViewClient());  //opens all the links in same web view
+                vlcWebView.loadUrl("about:blank");
 
                 WebSettings vlcWebSettings = vlcWebView.getSettings();
                 vlcWebSettings.setJavaScriptEnabled(true);

@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">kRemote</string>
-    <string name="app_version">v1.0.5</string>
+    <string name="app_version">v1.0.7</string>
     <string name="connectToVLCButton"> Connect to VLC </string>
     <string name="messageOnConnectToVLCFailure">No VLC Server found</string>
     <string name="menuItem1">Pre Requisites</string>
